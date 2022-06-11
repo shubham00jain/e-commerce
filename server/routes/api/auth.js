@@ -86,7 +86,12 @@ router.post('/register', async (req, res) => {
     if (!firstName || !lastName) {
       return res.status(400).json({ error: 'You must enter your full name.' });
     }
-
+    
+    if (firstName != '/^(?=.{1,50}$)[a-z]+(?:['_.\s][a-z]+)*$/i') {
+      return res.status(400).json({ error: 'User name is not in correct format. Try again later!' });
+    }
+    
+    
     if (!password) {
       return res.status(400).json({ error: 'You must enter a password.' });
     }
